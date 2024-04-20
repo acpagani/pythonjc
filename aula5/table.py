@@ -29,14 +29,18 @@ opção: """).lower().strip()
         address = input("Endereço: ")
         math = int(input("Quanto é 2 + 1? "))
 
-        file.write(f"{nome:<10}|{idade:<10}|{telefone:<10}|{address:<10}|{math:<10}\n")
+        if math == 3:
+            inteligente = "OK"
+        else:
+            inteligente = "Burro"
+        file.write(f"{nome:<10}|{idade:<10}|{telefone:<10}|{address:<10}|{inteligente:<10}\n")
         file.close()
 
     elif opt == 'v':
         file = open("table.txt", "r")
         header("TABELA")
         for f in file:
-            print(f)
+            print(f, end='')
         file.close()
 
     elif opt == 'd':
