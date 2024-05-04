@@ -5,7 +5,6 @@ def get_fruit(dict, cod):
     return 1
 
 
-
 frutas = {
     "1": 0.5,
     "2": 1,
