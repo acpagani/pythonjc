@@ -1,9 +1,9 @@
 import requests
 
-cep = input("CEP: ")
+#cep1 = input("CEP 1: ")
 
-url = f"https://viacep.com.br/ws/{cep}/json/"
-url2 = f"https://www.tutorialspoint.com/python-program-to-search-an-element-in-a-dictionary"
+#url = f"https://viacep.com.br/ws/{cep1}/json/"
+advice = f"https://api.adviceslip.com/advice"
 
 payload = {'origem': 37044150, "destino": 5651231}
 
