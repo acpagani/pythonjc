@@ -1,36 +1,45 @@
 import re
+import requests
 
 
-def formatar_lista_para_regex(lista):
-    lista_formatada = []
-
-    for item in lista:
-        if len(item.split()) > 1 and '-' in item:
-            partes = item.split(' - ')
-            marca = partes[0].strip()
-            submarca = partes[1].strip()
-            lista_formatada.append(rf'\b(?:{marca}\s*-\s*)?{submarca}\b')
-        else:
-            lista_formatada.append(r'\b' + item.replace('(', '').replace(')', '') + r'\b')
-
-    regex = r'(' + '|'.join(lista_formatada) + r')'
-    return regex
-
-
-def ajustar_genero_cor(cor):
-    """
-    Função que ajusta o gênero da cor para o masculino. Se a cor terminar em 'a', será substituída por 'o'.
-    """
-    if cor and cor.endswith('a'):
-        return cor[:-1] + 'o'
-    return cor
+def separar_sentencas(txt):
+    pattern = r"""
+            (                   
+                .*?             
+                (?:             
+                    [!?]        
+                    |           
+                    \.(?!\d)    
+                )               
+            )                   
+            (?=\s+|$)           
+        """
+    regex = re.compile(pattern, re.VERBOSE | re.DOTALL)
+    sentences = [m.group(1).strip() for m in regex.finditer(txt)]
+    return sentences
 
 
-l1 = ['branco', 'amarelo', 'vermelho']
-l2 = ['branco', 'amarelo', 'vermelho']
+texto = """Demais, Arthur, foi ótimo fazer negócio com você! Agora vou passar seus dados para o pessoal de vendas. 
+TRANSFERINDO PARA ESPECIALISTA."""
 
-lista_completa = formatar_lista_para_regex(l1 + [cor[:-1] + 'a' for cor in l2])
+print(separar_sentencas(texto))
 
-cor_match = re.search(lista_completa, 'amarela')
 
-print(ajustar_genero_cor(cor_match.group(1)))
+chats = [
+    {
+        "id": "123falkwak",
+        "chat": [
+            {"role": "system", "content": "AWDHAowh"},
+            {"role": "system", "content": "AWDHAowh"},
+            {"role": "system", "content": "AWDHAowh"}
+        ]
+    },
+    {
+        "id": "123falkwak",
+        "chat": [
+            {"role": "system", "content": "AWDHAowh"},
+            {"role": "system", "content": "AWDHAowh"},
+            {"role": "system", "content": "AWDHAowh"}
+        ]
+    }
+]
